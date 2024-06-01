@@ -30,25 +30,27 @@ function Home() {
     }, []);
     return (
         <div>
-            <div className='flex flex-col md:flex-row px-10 mt-5'>
+            <div className='flex flex-col md:flex-row px-3 sm:px-5 md:px-10 mt-5'>
                 <div className='md:w-3/5 flex flex-col gap-3 justify-center md:px-5'>
                     <h1 className='text-4xl sm:text-5xl md:text-5xl lg:text-6xl'>Where every book is a journey, and every reader an explorer.</h1>
+                    <div className='p-2 md:hidden flex'>
+                        <img src={banner} alt="Banner Image" />
+                    </div>
                     <p className='text-2xl mt-3'>Unlock your passport to endless adventures and explore captivating worlds within our vast bookstore collection today.</p>
                     <Link to="/searchbook" className=' w-fit px-8 py-2 mt-3 rounded-xl flex items-center gap-3 cursor-pointer border border-purple-950 bg-gradient-to-tr from-[#1b0f25] to-[#4b206c]'>
                         <Search className='text-lg' />
                         <span className='text-xl'>Search</span>
                     </Link>
                 </div>
-                <div className='p-2'>
+                <div className='p-2 hidden md:flex'>
                     <img src={banner} alt="Banner Image" />
                 </div>
             </div>
-
             <div className=' mx-4 md:mx-10 my-10'>
                 <h2 className="text-3xl font-semibold mb-6">Featured Books</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center gap-3 px-10 ">
-                    {books.map((book) => (
-                        <BookCard book={book} key={book.id} />
+                    {books.map((book, i) => (
+                        <BookCard book={book} key={i} onClick={() => { }} />
                     ))}
                 </div>
             </div>
@@ -71,18 +73,15 @@ function Home() {
                 </div>
             </div>
             <h2 className="text-5xl font-medium text-center my-5">Top Novels</h2>
-            <div className='grid md:grid-cols-2 p-5 gap-4'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 p-5 gap-4'>
                 {
                     books.map((e, i) => {
                         if (i <= 3) {
                             return (
                                 <BuyCard
                                     key={i}
-                                    author={e.volumeInfo.authors}
-                                    title={e.volumeInfo.title}
-                                    price={e.saleInfo?.listPrice?.amount}
-                                    category={e.volumeInfo.categories}
-                                    img={e.volumeInfo.imageLinks?.thumbnail}
+                                    book={e}
+                                    isPopup={false}
                                 />
                             )
                         }

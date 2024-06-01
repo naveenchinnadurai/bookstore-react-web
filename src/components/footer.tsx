@@ -11,10 +11,10 @@ function Footer() {
   return (
     <div className='flex flex-col gap-2 justify-center items-center bg-slate-900 p-5 mt-10'>
       <div className="flex gap-3">
-        <FB className="text-3xl" />
-        <Insta className="text-3xl" />
-        <LinkedIn className="text-3xl" />
-        <Github className="text-3xl" />
+        <FB className="text-3xl cursor-pointer" />
+        <Insta className="text-3xl cursor-pointer" />
+        <LinkedIn className="text-3xl cursor-pointer" />
+        <Github className="text-3xl cursor-pointer" />
       </div>
       <ul className="flex gap-5 px-10 mt-2">
         <li><Link to="/" className=" text-lg font-medium">Home</Link></li>

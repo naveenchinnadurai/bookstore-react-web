@@ -1,22 +1,27 @@
 interface ImageLinks {
-    thumbnail?: string;
-  }
-  
+  thumbnail?: string;
+}
+
 interface VolumeInfo {
-    title: string;
-    authors?: string[];
-    imageLinks?: ImageLinks;
-    categories?:string[]
-  }
-  
+  title: string;
+  pageCount:number;
+  infoLink:string;
+  description:string;
+  averageRating:number;
+  publishedDate:string;
+  authors?: string[];
+  imageLinks?: ImageLinks;
+  categories?: string[]
+}
+
 interface SaleInfo {
-    listPrice?: {
-      amount?: string;
-    };
-  }
-  
+  listPrice?: {
+    amount?: string;
+  };
+}
+
 export interface Book {
-    id: string;
-    volumeInfo: VolumeInfo;
-    saleInfo?: SaleInfo;
-  }
+  id: string;
+  volumeInfo: VolumeInfo;
+  saleInfo?: SaleInfo;
+}
