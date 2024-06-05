@@ -59,11 +59,11 @@ function Home() {
                     <h2 className="text-4xl md:text-7xl text-center">Read, Unwind and Refresh</h2>
                     <h1 className="text-xl md:text-4xl text-center">Reason,Why Incorporating Books into Your Life Promotes Health</h1>
                 </div>
-                <div className=' grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-7 py-10 px-5 md:px-16'>
+                <div className='cards grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-7 py-10 px-5 md:px-16'>
                     {
                         benefits.map((e, i) => {
                             return (
-                                <div key={i} className='border border-slate-800 p-6 flex flex-col gap-3 rounded-xl h-full'>
+                                <div key={i} className='cursor-pointer card border border-slate-800 p-6 flex flex-col gap-3 rounded-xl h-full'>
                                     <h1 className='text-3xl font-medium text-center'>{e.title}</h1>
                                     <p className='text-lg text-center'>{e.para}</p>
                                 </div>
