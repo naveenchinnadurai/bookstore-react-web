@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { Book } from './datatypes';
+import API_URL from './apiURL';
 
-interface Props{
-  API_URL:string,
-  search:string,
-  count:number
+interface Props {
+  search: string,
+  count: number,
+  startIndex: number
 }
 
-const fetchBooks = async ({API_URL,search,count}:Props): Promise<Book[]> => {
+const fetchBooks = async ({ search, count, startIndex }: Props): Promise<Book[]> => {
   try {
     let allBooks: Book[] = [];
     let nextPageToken = '';
@@ -17,7 +18,7 @@ const fetchBooks = async ({API_URL,search,count}:Props): Promise<Book[]> => {
         params: {
           q: search,
           maxResults: count,
-          startIndex: allBooks.length,
+          startIndex,
         },
       });
 
@@ -25,7 +26,7 @@ const fetchBooks = async ({API_URL,search,count}:Props): Promise<Book[]> => {
         allBooks = [...allBooks, ...response.data.items];
       }
       nextPageToken = response.data.nextPageToken;
-
+      console.log(nextPageToken)
     } while (nextPageToken);
 
     return allBooks;

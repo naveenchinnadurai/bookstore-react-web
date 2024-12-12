@@ -21,7 +21,7 @@ interface SaleInfo {
 }
 
 export interface Book {
-  id: string;
+  id: string | null ;
   volumeInfo: VolumeInfo;
   saleInfo?: SaleInfo;
 }
