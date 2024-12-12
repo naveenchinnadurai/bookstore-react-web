@@ -1,5 +1,4 @@
 import {
-    FaFacebookSquare as FB,
     FaInstagram as Insta,
     FaLinkedin as LinkedIn,
     FaGithub as Github
