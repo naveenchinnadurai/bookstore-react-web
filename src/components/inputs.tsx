@@ -8,11 +8,10 @@ function Inputs(props:props) {
     return (
         <input
             type="text"
-            
             onChange={props.setInputs}
             value={props.value}
             placeholder={props.placeHolder}
-            className="text-lg w-full md:w-1/3 py-2 px-4 text-black rounded-md outline-none bg-slate-200 focus:bg-white"
+            className="text-lg w-full md:w-1/3 py-2 px-5 text-black rounded-md outline-none bg-slate-200 focus:bg-white"
         />
     )
 }

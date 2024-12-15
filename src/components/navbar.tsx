@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 import { IoClose as Close } from "react-icons/io5";
 
 
-function Navbar() {
+function Navbar({ className }: { className: string }) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     useEffect(() => {
     }, [isSidebarOpen])
-    
+
 
     return (
-        <nav className="py-8 flex items-center justify-between sm:gap-1">
+        <nav className={`py-8 flex items-center justify-between sm:gap-1 ${className}`}>
             <Link to="/" className="flex gap-2 items-center">
                 <span className="text-4xl">
                     <Books />
@@ -23,11 +23,11 @@ function Navbar() {
             <span className="text-xl sm:hidden p-0" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                 <Menu className="w-10" />
             </span>
-            <div className={`${isSidebarOpen ? "flex absolute items-center justify-center top-0 right-0 w-2/3 h-screen bg-slate-800" : "hidden" } flex-col sm:flex sm:flex-row sm:gap-3 md:justify-center items-center`} >
+            <div className={`${isSidebarOpen ? "flex absolute items-center justify-center top-0 right-0 w-2/3 h-screen bg-slate-800" : "hidden"} flex-col sm:flex sm:flex-row sm:gap-3 md:justify-center items-center`} >
                 {
-                    isSidebarOpen? (
-                        <Close className="text-2xl absolute top-7 right-10" onClick={()=>setIsSidebarOpen(!isSidebarOpen)}/>
-                    ):null
+                    isSidebarOpen ? (
+                        <Close className="text-2xl absolute top-7 right-10" onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+                    ) : null
                 }
                 <ul className="flex flex-col sm:flex-row gap-4 sm:gap-8 md:px-10">
                     <li>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Book } from './datatypes';
+import { Book } from '../types/datatypes';
 import API_URL from './apiURL';
 
 interface Props {

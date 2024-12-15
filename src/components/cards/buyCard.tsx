@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Book } from "../../utils/datatypes"
+import { Book } from "../../types/datatypes"
 import { CiStar as Star } from "react-icons/ci";
 import { FaCartShopping as Cart } from "react-icons/fa6";
 import { PiApproximateEqualsBold as Approximate } from "react-icons/pi";
@@ -9,7 +9,6 @@ interface Prop {
     book: Book | null,
     key: number | string | null
 }
-
 
 export function BuyCardSimple({ book, key }: Prop) {
     return (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Book } from '../utils/datatypes';
+import { Book } from '../types/datatypes';
 import fetchBooks from '../utils/fetchBooks'
 import { MdExpandMore as More } from "react-icons/md";
 import BookCard from './cards/bookCard';
@@ -53,7 +53,10 @@ function SearchBook(props: props) {
                     ) : <></>
                 }
             </>
-            <div className={`items-center grid ${props.search ? "px-8 sm:px-16 sm:py-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 " : ""}`}>
+            {
+                props.search ? (<h1 className="text-xl text-slate-300 my-3">Your Search result for "{props.searchItem}" ,</h1>) : null
+            }
+            <div className={`items-center grid ${props.search ? "px-8 sm:px-5 md:px-10 lg:px-2 sm:py-5 grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 gap-6 " : ""}`}>
                 {
                     props.search ? (
                         searchBooks.map((e, i) => {
@@ -66,7 +69,7 @@ function SearchBook(props: props) {
                             }
                         })
                     ) : (
-                        <h2 className='text-center'>Your Search Will appear here!!</h2>
+                        <h2 className='text-center my-5'>Your Search Will appear here!!</h2>
                     )
                 }
             </div>

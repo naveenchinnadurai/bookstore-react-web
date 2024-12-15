@@ -26,14 +26,14 @@ function Search() {
     }
 
     return (
-        <div className='flex flex-col justify-between min-h-full py-20'>
-            <div className="flex flex-col pt-10">
+        <div className='flex flex-col justify-between min-h-full'>
+            <div className="flex flex-col py-5">
                 <h1 className="text-5xl font-bold mb-4 text-center">Dive into a World of Stories</h1>
                 <p className="text-2xl text-center">Discover, Explore, and Immerse Yourself in <br /> the Best Books of All Time.</p>
             </div>
-            <div className='p-10 flex flex-col sm:flex-row gap-3 justify-between md:justify-center md:gap-4 items-center'>
+            <div className='p-5 flex flex-col sm:flex-row gap-3 justify-between md:justify-center md:gap-4 items-center'>
                 <Inputs setInputs={getInput} value={input} placeHolder="Enter Book Name" />
-                <button className='bg-purple-950 px-4 py-2 rounded-lg h-full text-md cursor-pointer' onClick={() => searchBook()}>Get Books</button>
+                <button className='bg-gradient-to-tr from-[#1b0f25] to-[#4b206c] px-4 py-2.5 rounded-lg h-full text-md cursor-pointer' onClick={() => searchBook()}>Get Books</button>
             </div>
             <SearchBook search={buttonClick} searchItem={input} />
             <>

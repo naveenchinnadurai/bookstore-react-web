@@ -1,24 +1,21 @@
-
-import Navbar from './components/navbar';
-import Footer from './components/footer';
-import Home from './pages/home';
-import './App.css'
-import Search from './pages/search';
 import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import NormalRoutes from './components/routes/normalRoutes';
 import About from './pages/about';
-
+import Home from './pages/home';
+import Login from './pages/login';
+import Search from './pages/search';
 
 function App() {
 
   return (
-    <div className="bg-background text-white min-h-screen px-4 sm:px-5 lg:px-20">
-      <Navbar />
+    <div className="bg-[#090818] text-white flex flex-col justify-between min-h-screen px-4 sm:px-5 lg:px-20">
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/searchbook' element={<Search />} />
-        <Route path='/about' element={<About />} />
+        <Route path='/' element={<NormalRoutes><Home className='  ' /></NormalRoutes>} />
+        <Route path='/searchbook' element={<NormalRoutes><Search /></NormalRoutes>} />
+        <Route path='/about' element={<NormalRoutes><About /></NormalRoutes>} />
+        <Route path='/login' element={<Login />} />
       </Routes>
-      <Footer />
     </div>
   );
 };

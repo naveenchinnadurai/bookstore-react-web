@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function About() {
     return (
-        <div className="flex flex-col gap-2 px-3 md:px-9 py-8">
+        <div className="flex flex-col gap-2 px-3 md:px-9">
             <div className="max-w-xl my-5">
                 <h3 className="text-gray-800 text-4xl font-semibold sm:text-4xl">
                     About Me

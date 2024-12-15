@@ -6,12 +6,12 @@ import fetchBooks from '../../utils/fetchBooks';
 import { FaSearch as Search } from "react-icons/fa";
 import { FaQuoteLeft as QuoteStart, FaQuoteRight as QuoteEnd } from "react-icons/fa";
 import { benefits } from '../../utils/data'
-import { Book } from '../../utils/datatypes';
+import { Book } from '../../types/datatypes';
 import { Link } from 'react-router-dom';
 import { BuyCardSimple } from '../../components/cards/buyCard';
 
 
-function Home() {
+function Home({ className }: { className: String }) {
     const [books, setBooks] = useState<Book[]>([]);
     useEffect(() => {
         const loadBooks = async () => {
@@ -26,7 +26,7 @@ function Home() {
         loadBooks();
     }, []);
     return (
-        <div className=' ' >
+        <div className={`${className}`} >
             <div className='flex flex-col md:flex-row mt-5'>
                 <div className='md:w-3/5 flex flex-col gap-3 justify-center '>
                     <h1 className='text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-medium'>Where every book is a journey, and every reader an explorer.</h1>
@@ -44,8 +44,8 @@ function Home() {
                 </div>
             </div>
             <div className='my-10'>
-                <h2 className="text-3xl font-semibold mb-6">Featured Books</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center gap-3 px-3 sm:px-10 ">
+                <h2 className="text-5xl font-semibold mb-6">Featured Books</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 items-center gap-3 px-10 sm:px-10 ">
                     {
                         books.map((book, i) => {
                             if (i < 5) {
@@ -60,9 +60,9 @@ function Home() {
             <div className='flex flex-col py-2'>
                 <div className='flex flex-col gap-5'>
                     <h2 className="text-4xl md:text-7xl text-center font-bold md:font-medium">Read, Unwind and Refresh</h2>
-                    <h1 className="text-xl md:text-3xl lg:text-4xl text-center">Reason,Why Incorporating Books into Your Life Promotes Health</h1>
+                    <h1 className="text-xl md:text-3xl lg:text-3xl text-center">Reason,Why Incorporating Books into Your Life <br className='hidden md:flex' /> Promotes Health</h1>
                 </div>
-                <div className='cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-4 py-5 px-2 md:px-0 lg:px-10'>
+                <div className='cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-4 py-5 px-2 md:px-0 mt-5'>
                     {
                         benefits.map((e, i) => {
                             return (
@@ -75,7 +75,7 @@ function Home() {
                     }
                 </div>
             </div>
-            <div className='flex flex-col justify-center items-center gap-3 my-5'>
+            <div className='flex flex-col justify-center items-center gap-3 my-7'>
                 <h2 className="text-3xl font-normal">Get Started Now</h2>
                 <div className='flex gap-0 px-3'>
                     <QuoteStart className='text-xl md:text-2xl' />
@@ -84,24 +84,26 @@ function Home() {
                 </div>
                 <Link to="/searchbook" className=' w-fit px-6 py-1 mt-3 rounded-xl flex items-center gap-3 cursor-pointer border border-purple-950 bg-gradient-to-tr from-[#1b0f25] to-[#4b206c]'>
                     <Search className='text-md' />
-                    <span className='text-lg'>Search</span>
+                    <span className='text-lg'>Start Reading</span>
                 </Link>
             </div>
-            <h2 className="text-5xl font-medium text-center my-2">Some Books</h2>
-            <div className='overflow-auto'>
-                <div className='flex w-fit p-5 gap-4 overflow-auto '>
-                    {
-                        books.map((e, i) => {
-                            if (i >= 5 && i <= 10) {
-                                return (
-                                    <BuyCardSimple
-                                        key={i}
-                                        book={e}
-                                    />
-                                )
-                            }
-                        })
-                    }
+            <div className="gap-2 flex flex-col">
+                <h2 className="relative text-4xl font-medium">Best Seller Books</h2>
+                <div className='overflow-auto overflow-y-auto'>
+                    <div className=' flex w-fit mt-7 gap-4'>
+                        {
+                            books.map((e, i) => {
+                                if (i >= 5 && i <= 10) {
+                                    return (
+                                        <BuyCardSimple
+                                            key={i}
+                                            book={e}
+                                        />
+                                    )
+                                }
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         </div>
