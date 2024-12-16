@@ -6,7 +6,7 @@ import fetchBooks from '../../utils/fetchBooks';
 import { FaSearch as Search } from "react-icons/fa";
 import { FaQuoteLeft as QuoteStart, FaQuoteRight as QuoteEnd } from "react-icons/fa";
 import { benefits } from '../../utils/data'
-import { Book } from '../../types/datatypes';
+import { Book } from '../../utils/types';
 import { Link } from 'react-router-dom';
 import { BuyCardSimple } from '../../components/cards/buyCard';
 

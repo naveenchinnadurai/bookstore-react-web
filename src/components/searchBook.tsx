@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Book } from '../types/datatypes';
+import { Book } from '../utils/types';
 import fetchBooks from '../utils/fetchBooks'
 import { MdExpandMore as More } from "react-icons/md";
 import BookCard from './cards/bookCard';

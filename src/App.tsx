@@ -3,7 +3,7 @@ import './App.css';
 import NormalRoutes from './components/routes/normalRoutes';
 import About from './pages/about';
 import Home from './pages/home';
-import Login from './pages/login';
+import Register from './pages/register';
 import Search from './pages/search';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Route path='/' element={<NormalRoutes><Home className='  ' /></NormalRoutes>} />
         <Route path='/searchbook' element={<NormalRoutes><Search /></NormalRoutes>} />
         <Route path='/about' element={<NormalRoutes><About /></NormalRoutes>} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </div>
   );

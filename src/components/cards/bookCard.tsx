@@ -1,4 +1,4 @@
-import { Book } from "../../types/datatypes"
+import { Book } from "../../utils/types"
 
 interface prop {
     book: Book,

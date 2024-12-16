@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Book } from "../../types/datatypes"
+import { Book } from "../../utils/types"
 import { CiStar as Star } from "react-icons/ci";
 import { FaCartShopping as Cart } from "react-icons/fa6";
 import { PiApproximateEqualsBold as Approximate } from "react-icons/pi";

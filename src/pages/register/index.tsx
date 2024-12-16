@@ -1,18 +1,31 @@
-
 import { useState } from 'react';
 import { FaEye as Eye, FaEyeSlash as EyeOff } from "react-icons/fa";
-import bg from '../../assets/signup.jpg'
+import bg from '../../assets/signup.jpg';
 import { Link } from 'react-router-dom';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { signupFormValues } from '../../utils/types';
+import { signup } from '../../utils/supabase/apiFunctions';
 
-export default function Login() {
-    const [showPassword, setShowPassword] = useState(false)
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        // Add your signup logic here
-    }
+export default function Register() {
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<signupFormValues>();
+
+    const password = watch('password');
+
+    const onSubmit: SubmitHandler<signupFormValues> = (data: any) => {
+        console.log(data);
+        signup(data);
+    };
 
     return (
         <div className="grid md:grid-cols-2 place-content-evenly gap-5 lg;gap-0 min-h-screen bg-[#090818] p-5 md:p-10">
@@ -45,59 +58,64 @@ export default function Login() {
                         <h2 className="text-3xl font-bold text-white">Sign up</h2>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-7">
-                        <div className='relative'>
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
+                        <div className="relative">
                             <input
                                 id="fullName"
-                                name="fullName"
-                                type="text"
-                                required
-                                className="peer w-full  border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
+                                {...register('fullName', { required: 'Full name is required' })}
+                                className="peer w-full border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
                             />
-                            <label htmlFor="fullName" className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]">
+                            <label
+                                htmlFor="fullName"
+                                className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]"
+                            >
                                 Full Name
                             </label>
-                            <div className="absolute left-0 bottom-0 h-0.5 w-full bg-gray-800 scale-x-0 transform transition-transform duration-300 peer-focus:scale-x-100"></div>
+                            {errors.fullName && <span className="text-red-500 text-sm">{errors.fullName.message}</span>}
                         </div>
 
-                        <div className='relative'>
-
+                        <div className="relative">
                             <input
                                 id="email"
-                                name="email"
-                                type="email"
-                                required
-                                className="peer w-full  border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
+                                {...register('email', {
+                                    required: 'Email is required',
+                                    pattern: {
+                                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                        message: 'Invalid email address',
+                                    },
+                                })}
+                                className="peer w-full border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
                             />
-                            <label htmlFor="email" className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]">
+                            <label
+                                htmlFor="email"
+                                className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]"
+                            >
                                 Email Address
                             </label>
-                            <div className="absolute left-0 bottom-0 h-0.5 w-full bg-gray-800 scale-x-0 transform transition-transform duration-300 peer-focus:scale-x-100"></div>
+                            {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
                         </div>
 
-                        <div className='relative'>
-
+                        <div className="relative">
                             <input
-                                id="farmerId"
-                                name="farmerId"
-                                type="text"
-                                required
-                                className="peer w-full  border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
+                                id="mobileNumber"
+                                {...register('mobileNumber')}
+                                className="peer w-full border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
                             />
-                            <label htmlFor="farmerId" className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]">
+                            <label
+                                htmlFor="mobileNumber"
+                                className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]"
+                            >
                                 Mobile Number
                             </label>
-                            <div className="absolute left-0 bottom-0 h-0.5 w-full bg-gray-800 scale-x-0 transform transition-transform duration-300 peer-focus:scale-x-100"></div>
                         </div>
 
                         <div className="flex gap-3">
                             <div className="relative">
                                 <input
                                     id="password"
-                                    name="password"
                                     type={showPassword ? 'text' : 'password'}
-                                    required
-                                    className="peer w-full  border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
+                                    {...register('password', { required: 'Password is required' })}
+                                    className="peer w-full border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
                                 />
                                 <button
                                     type="button"
@@ -106,23 +124,25 @@ export default function Login() {
                                 >
                                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                                 </button>
-                                <label htmlFor="password" className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]">
+                                <label
+                                    htmlFor="password"
+                                    className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]"
+                                >
                                     Password
                                 </label>
-                                <div className="absolute left-0 bottom-0 h-0.5 w-full bg-gray-800 scale-x-0 transform transition-transform duration-300 peer-focus:scale-x-100"></div>
+                                {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
                             </div>
 
                             <div className="relative">
                                 <input
                                     id="confirmPassword"
-                                    name="confirmPassword"
                                     type={showConfirmPassword ? 'text' : 'password'}
-                                    required
-                                    className="peer w-full  border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
+                                    {...register('confirmPassword', {
+                                        required: 'Confirm password is required',
+                                        validate: (value) => value === password || 'Passwords do not match',
+                                    })}
+                                    className="peer w-full border-b border-slate-500 bg-transparent text-lg p-1 focus:outline-none focus:ring-0 focus:border-gray-800"
                                 />
-                                <label htmlFor="confirmPassword" className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]">
-                                    Confirm Password
-                                </label>
                                 <button
                                     type="button"
                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -130,7 +150,15 @@ export default function Login() {
                                 >
                                     {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                                 </button>
-                                <div className="absolute left-0 bottom-0 h-0.5 w-full bg-gray-800 scale-x-0 transform transition-transform duration-300 peer-focus:scale-x-100"></div>
+                                <label
+                                    htmlFor="confirmPassword"
+                                    className="absolute left-0 top-1 text-gray-400 transform transition-all duration-300 peer-placeholder-shown:top-4 peer-placeholder-shown:text-lg peer-focus:-top-5 peer-focus:text-gray-800 peer-focus:text-[15px]"
+                                >
+                                    Confirm Password
+                                </label>
+                                {errors.confirmPassword && (
+                                    <span className="text-red-500 text-sm">{errors.confirmPassword.message}</span>
+                                )}
                             </div>
                         </div>
 

@@ -25,3 +25,21 @@ export interface Book {
   volumeInfo: VolumeInfo;
   saleInfo?: SaleInfo;
 }
+
+
+export interface signupFormValues {
+  fullName: string;
+  email: string;
+  mobileNumber?: string;
+  password: string;
+  confirmPassword: string;
+}
+
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  mobile: string | null;
+  joined_on: Date;
+}
