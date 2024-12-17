@@ -4,7 +4,7 @@ import Footer from '../footer'
 
 function NormalRoutes({ children }: { children: ReactNode }) {
     return (
-        <div>
+        <div className='flex flex-col justify-between min-h-screen'>
             <Navbar className='' />
             {children}
             <Footer className='' />

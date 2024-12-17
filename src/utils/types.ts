@@ -35,6 +35,11 @@ export interface signupFormValues {
   confirmPassword: string;
 }
 
+export interface LoginFormValues{
+  email:string,
+  password:string
+}
+
 
 export interface User {
   id: string;

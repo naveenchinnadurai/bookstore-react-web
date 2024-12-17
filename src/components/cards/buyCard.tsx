@@ -12,19 +12,19 @@ interface Prop {
 
 export function BuyCardSimple({ book, key }: Prop) {
     return (
-        <div className="!w-[350px] p-4 bg-[rgba(75,30,133,0.1)] rounded-xl flex-col relative overflow-visible shadow-md" key={key}>
-            <div className="card-img bg-orange-300 w-full  h-[300px] rounded-lg transition-transform duration-300 ease-in-out hover:-translate-y-[25%] hover:shadow-[0px_13px_47px_-5px_rgba(226,196,63,0.25),_0px_8px_16px_-8px_rgba(180,71,71,0.3)]">
+        <div className="w-[280px] md:w-[320px] p-4 bg-[rgba(18,9,31,0.1)] border border-slate-900 rounded-xl flex-col relative overflow-visible shadow-md" key={key}>
+            <div className="card-img flex justify-center w-auto  h-[280px] rounded-lg transition-transform duration-300 ease-in-out hover:-translate-y-[25%] hover:shadow-[0px_13px_47px_-5px_rgba(226,196,63,0.25),_0px_8px_16px_-8px_rgba(180,71,71,0.3)]">
                 <img src={book?.volumeInfo.imageLinks?.thumbnail} alt={book?.volumeInfo.title} className="w-full h-full rounded-lg" />
             </div>
             <div className="sm:ps-4 md:ps-0 sm:w-2/3 md:w-full flex flex-col justify-stretch">
                 <div className="my-3">
                     {/* <h2 className={`text-3xl font-bold text-center sm:text-start leading-[1.5] md:text-center lg:text-start hidden sm:flex`}>{book?.volumeInfo.title}</h2> */}
-                    <div className="flex flex-col gap-2">
-                        <h2 className="text-xl font-normal text-center sm:text-start md:text-center lg:text-start">Author : {book?.volumeInfo.authors}</h2>
-                        <h2 className="text-xl font-normal text-center sm:text-start md:text-center lg:text-start">Category: {book?.volumeInfo.categories || 'unknown'}</h2>
-                        <h2 className="text-xl font-normal text-center sm:text-start md:text-center lg:text-start">Published On: {book?.volumeInfo.publishedDate}</h2>
+                    <div className="flex flex-col gap-0 md:gap-2 text-lg md:text-xl font-normal text-center sm:text-start md:text-center lg:text-start">
+                        <h2 >Author : {book?.volumeInfo.authors}</h2>
+                        <h2 >Category: {book?.volumeInfo.categories || 'unknown'}</h2>
+                        <h2 >Published On: {book?.volumeInfo.publishedDate}</h2>
                     </div>
-                    <div className={`flex gap-2 mt-3 justify-center sm:justify-normal md:justify-center lg:justify-normal items-center`}>
+                    <div className={`flex gap-2 mt-1 md:mt-3 justify-center sm:justify-normal md:justify-center lg:justify-normal items-center`}>
                         <p className="text-lg ">AVG Rating : {book?.volumeInfo.averageRating || 3.5}  </p>
                         <span className="text-xl"><Star /></span>
                     </div>

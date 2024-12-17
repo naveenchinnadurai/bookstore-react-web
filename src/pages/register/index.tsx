@@ -1,48 +1,89 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaEye as Eye, FaEyeSlash as EyeOff } from "react-icons/fa";
 import bg from '../../assets/signup.jpg';
 import { Link } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { signupFormValues } from '../../utils/types';
 import { signup } from '../../utils/supabase/apiFunctions';
+import { useUser } from '../../context/userContext';
+import Popup from '../../components/popup';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { IoClose as Close } from "react-icons/io5";
 
 
 
 export default function Register() {
+    const { navigateTo, setLoggedIn, setUserState } = useUser();
+
+    // useEffect(() => {
+    //     if (!user) return navigateTo('/');
+    // }, [])
+
+
+
+    const [popupData, setPopupData] = useState({
+        state: false,
+        text: ""
+    });
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setPopupData({ state: false, text: "" });
+        }, 6000);
+
+        return () => clearTimeout(timeoutId);
+    }, [popupData]);
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm<signupFormValues>();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm<signupFormValues>();
 
     const password = watch('password');
 
-    const onSubmit: SubmitHandler<signupFormValues> = (data: any) => {
-        console.log(data);
-        signup(data);
+    const onSubmit: SubmitHandler<signupFormValues> = async (data: any) => {
+        const res: any = await signup(data);
+        console.log(res);
+        if (res.status) {
+            setLoggedIn(true);
+            setUserState(res.user);
+            navigateTo('/');
+        } else {
+            setPopupData({
+                state: true,
+                text: res.error
+            })
+        }
     };
 
     return (
         <div className="grid md:grid-cols-2 place-content-evenly gap-5 lg;gap-0 min-h-screen bg-[#090818] p-5 md:p-10">
+            {
+                popupData.state ? (
+                    <Alert className='absolute bottom-3 md:bottom-10 right-3 md:right-10 w-3/5 md:w-2/5 z-10 bg-gray-950 text-white border-zinc-800'>
+                        <AlertTitle>User Creation Error</AlertTitle>
+                        <AlertDescription className='mt-3'>
+                            {popupData.text}
+                            <Close className='absolute right-5 top-5' onClick={() => setPopupData({ state: false, text: "" })} />
+                        </AlertDescription>
+
+                    </Alert>
+                ) : null
+            }
             {/* Left Section - Image Slider */}
             <div className="col-span-2 md:col-span-1 h-48 md:h-full md:flex relative">
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full bg-black rounded-3xl overflow-hidden md:rounded-r-none">
                     <img
                         src={bg}
                         alt="Background"
-                        className="h-full w-full rounded-3xl md:rounded-s-none z-10"
+                        className="h-full w-full opacity-45 z-10"
                     />
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-12">
-                        <h1 className="text-6xl font-bold mb-4">zween</h1>
+                        <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold md:mb-4 text-center">zween Online <br /> Book Store</h1>
                         <div className="text-center">
                             <p className="text-sm text-gray-400">
                                 Already have an account?{' '}
-                                <Link to="/login" className="text-purple-500 hover:text-purple-400 cursor-pointer">
+                                <Link to="/login" className="text-white underline hover:text-purple-400 cursor-pointer">
                                     Login
                                 </Link>
                             </p>
@@ -109,7 +150,7 @@ export default function Register() {
                             </label>
                         </div>
 
-                        <div className="flex gap-3">
+                        <div className="flex flex-col sm:flex-row gap-7 sm:gap-3">
                             <div className="relative">
                                 <input
                                     id="password"
@@ -164,7 +205,7 @@ export default function Register() {
 
                         <button
                             type="submit"
-                            className="w-full rounded-lg bg-purple-600 py-3 text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+                            className="w-full rounded-lg bg-gradient-to-tr from-[#1b0f25] to-[#4b206c] py-3 text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
                         >
                             Create account
                         </button>

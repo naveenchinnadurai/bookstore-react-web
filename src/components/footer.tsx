@@ -9,9 +9,9 @@ function Footer({ className }: { className: String }) {
         <li><Link to="/searchbook" >Search</Link></li>
         <li><Link to="/about" >About</Link></li>
       </ul>
-      <div className="flex gap-1 items-center justify-center text-gray-500">
+      <div className="flex gap-1 items-start sm:items-center justify-center text-gray-500">
         <CopyRights className="text-xl" />
-        <p className="text-md sm:text-md">2024 Zween Books. All rights reserved.</p>
+        <p className="text-md sm:text-md flex justify-center">2024 Zween Books. All rights reserved.</p>
       </div>
     </div>
   )

@@ -44,7 +44,7 @@ function Home({ className }: { className: String }) {
                 </div>
             </div>
             <div className='my-10'>
-                <h2 className="text-5xl font-semibold mb-6">Featured Books</h2>
+                <h2 className="text-3xl md:text-5xl font-semibold mb-4 md:mb-6">Featured Books</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 items-center gap-3 px-10 sm:px-10 ">
                     {
                         books.map((book, i) => {

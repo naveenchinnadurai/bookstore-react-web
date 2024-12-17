@@ -26,7 +26,6 @@ const fetchBooks = async ({ search, count, startIndex }: Props): Promise<Book[]>
         allBooks = [...allBooks, ...response.data.items];
       }
       nextPageToken = response.data.nextPageToken;
-      console.log(nextPageToken)
     } while (nextPageToken);
 
     return allBooks;

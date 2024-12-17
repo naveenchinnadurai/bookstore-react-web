@@ -5,18 +5,25 @@ import About from './pages/about';
 import Home from './pages/home';
 import Register from './pages/register';
 import Search from './pages/search';
+import { UserProvider } from './context/userContext';
+import Login from './pages/login';
+import Profile from './pages/profile';
 
 function App() {
 
   return (
-    <div className="bg-[#090818] text-white flex flex-col justify-between min-h-screen px-4 sm:px-5 lg:px-20">
-      <Routes>
-        <Route path='/' element={<NormalRoutes><Home className='  ' /></NormalRoutes>} />
-        <Route path='/searchbook' element={<NormalRoutes><Search /></NormalRoutes>} />
-        <Route path='/about' element={<NormalRoutes><About /></NormalRoutes>} />
-        <Route path='/register' element={<Register />} />
-      </Routes>
-    </div>
+    <UserProvider>
+      <div className="bg-[#090818] text-white px-4 sm:px-5 lg:px-20">
+        <Routes>
+          <Route path='/' element={<NormalRoutes><Home className='  ' /></NormalRoutes>} />
+          <Route path='/searchbook' element={<NormalRoutes><Search /></NormalRoutes>} />
+          <Route path='/about' element={<NormalRoutes><About /></NormalRoutes>} />
+          <Route path='/profile' element={<NormalRoutes><Profile /></NormalRoutes>} />
+          <Route path='/signup' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </div>
+    </UserProvider>
   );
 };
 
