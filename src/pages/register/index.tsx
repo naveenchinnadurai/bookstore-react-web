@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import { FaEye as Eye, FaEyeSlash as EyeOff } from "react-icons/fa";
-import bg from '../../assets/signup.jpg';
-import { Link } from 'react-router-dom';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { signupFormValues } from '../../utils/types';
-import { signup } from '../../utils/supabase/apiFunctions';
-import { useUser } from '../../context/userContext';
-import Popup from '../../components/popup';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { FaEye as Eye, FaEyeSlash as EyeOff } from "react-icons/fa";
 import { IoClose as Close } from "react-icons/io5";
+import { Link } from 'react-router-dom';
+import bg from '../../assets/signup.jpg';
+import { useUser } from '../../context/userContext';
+import { signup } from '../../utils/supabase/apiFunctions';
+import { signupFormValues } from '../../utils/types';
 
 
 

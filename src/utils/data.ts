@@ -14,7 +14,7 @@ export const benefits=[
 ]
 
 
-const sampleBook = [
+export const sampleBook = [
     {
         kind: "books#volume",
         id: "1",

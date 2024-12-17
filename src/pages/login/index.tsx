@@ -14,13 +14,6 @@ import { login } from '../../utils/supabase/apiFunctions';
 export default function Login() {
     const { navigateTo, setLoggedIn, setUserState } = useUser();
 
-    // useEffect(() => {
-    //     if (!user) return navigateTo('/');
-    // }, [])
-
-
-
-
     const [popupData, setPopupData] = useState({
         state: false,
         text: ""

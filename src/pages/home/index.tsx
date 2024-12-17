@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import BookCard from '../../components/cards/bookCard';
 import banner from '../../assets/banner.png'
 import fetchBooks from '../../utils/fetchBooks';

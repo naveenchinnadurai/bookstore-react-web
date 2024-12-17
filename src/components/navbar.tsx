@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FaShoppingCart as Cart } from "react-icons/fa";
 import { GiBookshelf as Books } from "react-icons/gi";
 import { IoClose as Close } from "react-icons/io5";
 import { TiThMenu as Menu } from "react-icons/ti";
@@ -9,7 +8,7 @@ import { useUser } from "../context/userContext";
 
 function Navbar({ className }: { className: string }) {
 
-    const { isLoggedIn, logoutUser, user } = useUser();
+    const { isLoggedIn, logoutUser } = useUser();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     useEffect(() => {
     }, [isSidebarOpen])
