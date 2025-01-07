@@ -27,7 +27,10 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     useEffect(() => {
         const user = localStorage.getItem('user');
         if (user) {
-            setUser(JSON.parse(user))
+            setUser(JSON.parse(user));
+            setLoggedIn(true);
+        } else {
+            setLoggedIn(false);
         }
     }, [location.pathname])
 

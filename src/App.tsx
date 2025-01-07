@@ -8,6 +8,7 @@ import Search from './pages/search';
 import { UserProvider } from './context/userContext';
 import Login from './pages/login';
 import Profile from './pages/profile';
+import NotFoundPage from './pages/notFound';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/profile' element={<NormalRoutes><Profile /></NormalRoutes>} />
           <Route path='/signup' element={<Register />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/*' element={<NotFoundPage />} />
         </Routes>
       </div>
     </UserProvider>
