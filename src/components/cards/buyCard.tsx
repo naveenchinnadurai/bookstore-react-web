@@ -1,5 +1,4 @@
-import { CiStar as Star } from "react-icons/ci";
-import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FaCartShopping as Cart } from "react-icons/fa6";
 import { PiApproximateEqualsBold as Approximate } from "react-icons/pi";
 import { Link } from "react-router-dom";
@@ -81,7 +80,6 @@ function BuyCard({ book, key }: Prop) {
 }
 
 const StarRating = ({ rating }: { rating: number }) => {
-    const totalStars = 5;
     const fullStars = Math.floor(rating); // Number of full stars
     const hasHalfStar = rating % 1 >= 0.5; // Check for half star
 

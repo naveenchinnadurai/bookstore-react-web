@@ -1,15 +1,15 @@
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useEffect, useState } from "react";
+import { FaRegUserCircle as User } from "react-icons/fa";
+import { FiLogIn as Login } from "react-icons/fi";
 import { GiBookshelf as Books } from "react-icons/gi";
 import { IoClose as Close } from "react-icons/io5";
+import { MdOutlineShoppingCart as Cart } from "react-icons/md";
 import { TiThMenu as Menu } from "react-icons/ti";
 import { Link } from "react-router-dom";
+import CartSection from '../components/cart';
 import { useUser } from "../context/userContext";
-import { FiLogIn as Login } from "react-icons/fi";
-import { MdOutlineShoppingCart as Cart } from "react-icons/md";
-import { FaRegUserCircle as User } from "react-icons/fa";
 import { Button } from "./ui/button";
-import CartSection from '../components/cart'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
 
 function Navbar({ className }: { className: string }) {
 
