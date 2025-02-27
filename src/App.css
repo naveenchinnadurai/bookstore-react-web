@@ -23,9 +23,17 @@
   transform: scale(1.2, 1.2);
 }
 
-.cards:hover > .card:not(:hover) {
+.cards:hover>.card:not(:hover) {
   filter: blur(10px);
   transform: scale(0.9, 0.9);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @layer base {
@@ -56,6 +64,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -88,6 +97,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

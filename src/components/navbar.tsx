@@ -9,6 +9,7 @@ import { MdOutlineShoppingCart as Cart } from "react-icons/md";
 import { FaRegUserCircle as User } from "react-icons/fa";
 import { Button } from "./ui/button";
 import CartSection from '../components/cart'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
 
 function Navbar({ className }: { className: string }) {
 
@@ -25,7 +26,7 @@ function Navbar({ className }: { className: string }) {
             {
                 showCart && (
                     <div className="absolute top-0 right-0 h-screen w-3/5  z-10">
-                        <CartSection onClose={()=>setShowCart(false)}/>
+                        <CartSection onClose={() => setShowCart(false)} />
                     </div>
                 )
             }
@@ -56,20 +57,39 @@ function Navbar({ className }: { className: string }) {
                     </li>
                     {
                         isLoggedIn ? (
-                            <>
-                                <li className="my-2">
-                                    <Link to="/profile"><User className="text-2xl" /></Link>
-                                </li>
-                                <Button onClick={()=>setShowCart(true)}>
-                                    <Cart className="!text-[20px]" />
+                            <li className="flex flex-col sm:flex-row-reverse gap-2">
+                                <Button onClick={() => setShowCart(true)}>
+                                    <Cart className="!text-xl" />
                                 </Button>
-                                <li onClick={() => logoutUser()}>
-                                    Logout
-                                </li>
-                            </>
+                                <div className="">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button className="bg-transparent">
+                                                <User className="text-2xl" />
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-48 border-gray-800 text-white bg-slate-950">
+                                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                            <DropdownMenuGroup>
+                                                <DropdownMenuItem className="p-0 hover:bg-transparent rounded-xl hover:bg-slate-900">
+                                                    <Link to="/profile" className="hover:bg-slate-900 hover:text-white rounded-md w-full h-full  p-2">Profile</Link>
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem className="p-0 hover:bg-transparent rounded-xl hover:bg-slate-900">
+                                                    <Link to="/profile" className="hover:bg-slate-900 hover:text-white rounded-md  w-full h-full p-2">Settings</Link>
+                                                </DropdownMenuItem>
+                                            </DropdownMenuGroup>
+                                            <DropdownMenuSeparator className="bg-gray-800 w-[98%] mx-auto"/>
+                                            <DropdownMenuItem onClick={() => logoutUser()} className=" hover:bg-slate-700">
+                                                Logout
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+
+                            </li>
                         ) : (
                             <li>
-                                <Link to="/login" className="flex gap-1 px-4 py-1 rounded-lg bg-gradient-to-tr from-[#1b0f25] to-[#4b206c]">Login
+                                <Link to="/login" className="flex gap-1 p-2 rounded-lg bg-gradient-to-tr from-[#1b0f25] to-[#4b206c]">
                                     <Login className="text-2xl" />{isLoggedIn}
                                 </Link>
                             </li>

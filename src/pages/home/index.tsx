@@ -44,7 +44,7 @@ function Home({ className }: { className: String }) {
             </div>
             <div className='my-10'>
                 <h2 className="text-3xl md:text-5xl font-semibold mb-4 md:mb-6">Featured Books</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 items-center gap-3 px-10 sm:px-10 ">
+                <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 items-center gap-3 px-8 sm:px-10 ">
                     {
                         books.map((book, i) => {
                             if (i < 5) {
@@ -89,7 +89,7 @@ function Home({ className }: { className: String }) {
             <div className="gap-2 flex flex-col">
                 <h2 className="relative text-4xl font-medium">Best Seller Books</h2>
                 <div className='overflow-auto overflow-y-auto'>
-                    <div className=' flex w-fit mt-7 gap-4'>
+                    <div className=' flex w-fit mt-7 gap-4 no-scrollbar'>
                         {
                             books.map((e, i) => {
                                 if (i >= 5 && i <= 10) {

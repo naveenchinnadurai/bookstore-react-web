@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
-import { Book } from "../../utils/types"
 import { CiStar as Star } from "react-icons/ci";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FaCartShopping as Cart } from "react-icons/fa6";
 import { PiApproximateEqualsBold as Approximate } from "react-icons/pi";
+import { Link } from "react-router-dom";
+import { Book } from "../../utils/types";
 
 
 interface Prop {
@@ -19,21 +20,30 @@ export function BuyCardSimple({ book, key }: Prop) {
             <div className="sm:ps-4 md:ps-0 sm:w-2/3 md:w-full flex flex-col justify-stretch">
                 <div className="my-3">
                     {/* <h2 className={`text-3xl font-bold text-center sm:text-start leading-[1.5] md:text-center lg:text-start hidden sm:flex`}>{book?.volumeInfo.title}</h2> */}
-                    <div className="flex flex-col gap-0 md:gap-2 text-lg md:text-xl font-normal text-center sm:text-start md:text-center lg:text-start">
-                        <h2 >Author : {book?.volumeInfo.authors}</h2>
-                        <h2 >Category: {book?.volumeInfo.categories || 'unknown'}</h2>
-                        <h2 >Published On: {book?.volumeInfo.publishedDate}</h2>
+                    <div className="flex flex-col gap-0 md:gap-2 text-lg md:text-lg text-center sm:text-start md:text-center lg:text-start">
+                        <h2 >
+                            <strong>Author : </strong>
+                            <span className=" font-light ">{book?.volumeInfo.authors}</span>
+                        </h2>
+                        <h2 >
+                            <strong>Category: </strong>
+                            <span className=" font-light ">{book?.volumeInfo.categories || 'unknown'}</span>
+                        </h2>
+                        <h2 >
+                            <strong>Published On: </strong>
+                            <span className=" font-light ">{book?.volumeInfo.publishedDate}</span>
+                        </h2>
                     </div>
                     <div className={`flex gap-2 mt-1 md:mt-3 justify-center sm:justify-normal md:justify-center lg:justify-normal items-center`}>
-                        <p className="text-lg ">AVG Rating : {book?.volumeInfo.averageRating || 3.5}  </p>
-                        <span className="text-xl"><Star /></span>
+                        <strong className="text-lg ">AVG Rating : </strong>
+                        <StarRating rating={book?.volumeInfo.averageRating || 3.5} />
                     </div>
                 </div>
                 <div className="w-full flex justify-between items-center pt-2.5 border-t border-gray-300">
-                    <h2 className="text-3xl font-medium text-center sm:text-start md:text-center lg:text-start flex ">$ {book?.saleInfo?.listPrice?.amount || ~270}</h2>
+                    <h2 className="text-2xl font-medium text-center sm:text-start md:text-center lg:text-start flex ">$ {book?.saleInfo?.listPrice?.amount || ~270}</h2>
                     <div className="card-button border border-gray-900 flex items-center gap-2 p-1 cursor-pointer rounded-full transition-all duration-300 hover:border-orange-300 hover:bg-orange-300">
                         {/* <Link to={book?.volumeInfo.infoLink} className=' w-fit text-lg h-fit px-5 py-1 rounded-lg flex items-center gap-3 cursor-pointer border '>Know More</Link> */}
-                        <Cart className="text-3xl" />
+                        <Cart className="text-xl" />
                     </div>
                 </div>
             </div>
@@ -56,12 +66,12 @@ function BuyCard({ book, key }: Prop) {
                     <h2 className="text-xl font-normal text-center sm:text-start md:text-center lg:text-start">Published On: {book?.volumeInfo.publishedDate}</h2>
                 </div>
                 <div className={`flex gap-2 justify-center sm:justify-normal md:justify-center lg:justify-normal items-center`}>
-                    <p className="text-2xl flex gap-2"><span className="hidden sm:block">Average</span> Ratings of {book?.volumeInfo.averageRating || 3.5}  </p>
-                    <span className="text-2xl"><Star /></span>
+                    <p className="text-2xl flex gap-2"><span className="hidden sm:block">Average</span> Ratings of </p>
+                    <StarRating rating={book?.volumeInfo.averageRating || 3.5} />
                 </div>
                 <p className={`text-center sm:text-start md:text-center lg:text-left flex`}>Total Page Count of the book {book?.volumeInfo.pageCount || 273}</p>
                 <h2 className="text-5xl font-medium text-center sm:text-start md:text-center lg:text-start flex items-center gap-2">$ {book?.saleInfo?.listPrice?.amount || <span className="flex gap-1 text-2xl"><Approximate />270</span>}</h2>
-                <div className="flex gap-3 mt-2 flex-wrap justify-center md:justify-normal sm:h-fit w-full">    
+                <div className="flex gap-3 mt-2 flex-wrap justify-center md:justify-normal sm:h-fit w-full">
                     <span className=' w-fit text-lg h-fit px-5 py-1 rounded-lg flex items-center gap-3 cursor-pointer border '>Add To Cart</span>
                     <Link to={book?.volumeInfo.infoLink || "/"} target="_blank" className=' w-fit text-lg h-fit px-5 py-1 rounded-lg flex items-center gap-3 cursor-pointer border '>Know More</Link>
                 </div>
@@ -69,5 +79,25 @@ function BuyCard({ book, key }: Prop) {
         </div>
     )
 }
+
+const StarRating = ({ rating }: { rating: number }) => {
+    const totalStars = 5;
+    const fullStars = Math.floor(rating); // Number of full stars
+    const hasHalfStar = rating % 1 >= 0.5; // Check for half star
+
+    return (
+        <div style={{ display: "flex", gap: "4px", color: "#FFD700" }}>
+            {/* Render full stars */}
+            {Array(fullStars)
+                .fill(0)
+                .map((_, index) => (
+                    <FaStar key={`full-${index}`} />
+                ))}
+
+            {/* Render half star if applicable */}
+            {hasHalfStar && <FaStarHalfAlt key="half" />}
+        </div>
+    );
+};
 
 export default BuyCard
